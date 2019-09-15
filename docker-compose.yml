@@ -1,0 +1,30 @@
+  
+# docker-compose のバージョン
+version: '3'
+
+# 各コンテナの情報
+services:
+
+  # postgres サービス
+  postgres:
+    image: postgres:11.5
+    # postgres 設定
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+  # golang アプリケーション
+  app:
+    image: reud/plathome-backend
+    # postgres をビルドした後に app をビルド
+    depends_on:
+      - postgres
+    # Dockerfile を指定
+    network_mode: "host"
+    environment:
+      - host=10.255.0.1
+    ports:
+      - "8080:8080"
+volumes:
+  dbdata:
