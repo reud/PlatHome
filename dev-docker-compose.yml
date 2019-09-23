@@ -1,0 +1,31 @@
+# docker-compose のバージョン
+version: '3'
+
+# 各コンテナの情報
+services:
+
+  # postgres サービス
+  postgres:
+    image: postgres:11.5
+    # postgres 設定
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+  # golang アプリケーション
+  app:
+    build:
+      context: ./
+      args:
+        GOARCH: "amd64"
+    # postgres をビルドした後に app をビルド
+    depends_on:
+      - postgres
+    # Dockerfile を指定
+    environment:
+      - DBHOST=postgres
+    ports:
+      - "8080:8080"
+volumes:
+  dbdata:
