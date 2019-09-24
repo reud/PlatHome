@@ -8,15 +8,13 @@ services:
   postgres:
     image: postgres:11.5
     # postgres 設定
-    ports:
-      - "5432:5432"
     volumes:
       - dbdata:/var/lib/postgresql/data
 
   # golang アプリケーション
-  app:
+  backend:
     build:
-      context: ./
+      context: ./plathome-backend/
       args:
         GOARCH: "amd64"
     # postgres をビルドした後に app をビルド
@@ -27,5 +25,15 @@ services:
       - DBHOST=postgres
     ports:
       - "8080:8080"
+
+  # nuxt app
+  frontend:
+    build:
+      context: ./plathome-frontend/
+    depends_on:
+      - postgres
+      - backend
+    ports:
+      - "3333:3000"
 volumes:
   dbdata:
