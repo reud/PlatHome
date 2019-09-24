@@ -9,17 +9,22 @@ Send ping regulary for device alive check, easy requesting, device monitoring(ma
 
 ## Background
 
-I've a lot of raspberry pi and my raspberry pi has gone regulary. So I have to watch device statuses
+I've a lot of raspberry pi and my raspberry pi has gone regulary. So I have to watch device statuses.
 
 ## Demo
+
+
 
 ## VS. 
 
 ## Requirement
 
+
 ## Usage
 
 ## Install
+
+`$ ./start.sh`
 
 ## Contribution
 
