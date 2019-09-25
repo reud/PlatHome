@@ -55,7 +55,7 @@ git pull
 cd ..
 
 
-ENV="BASEURL=http://192.168.0.66:8080/"
+ENV="BASEURL=http://localhost:8080/"
 cd plathome-frontend || { echo "move plathome-frontend failed" && exit 1; }
 # SETUP .env for plathome-frontend
 if [ -e ./.env ]; then
@@ -78,5 +78,5 @@ cd ..
 
 # Starting Docker Compose...
 echo "docker-compose start"
-docker-compose build
-docker-compose up
+docker-compose -f dev-docker-compose.yml build
+docker-compose  -f dev-docker-compose.yml up
