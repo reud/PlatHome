@@ -1,0 +1,40 @@
+# docker-compose のバージョン
+version: '3'
+
+# 各コンテナの情報
+services:
+
+  # postgres サービス
+  postgres:
+    image: postgres:11.5
+    # postgres 設定
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # golang アプリケーション
+  backend:
+    build:
+      context: ./plathome-backend/
+      args:
+        GOARCH: "arm"
+    # postgres をビルドした後に app をビルド
+    depends_on:
+      - postgres
+    # Dockerfile を指定
+    environment:
+      - DBHOST=localhost
+      - HOST=0.0.0.0
+    network_mode: "host"
+  # nuxt app
+  frontend:
+    build:
+      context: ./plathome-frontend/
+    depends_on:
+      - postgres
+      - backend
+    ports:
+      - "3333:3000"
+volumes:
+  dbdata:

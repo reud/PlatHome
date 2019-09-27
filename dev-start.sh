@@ -1,18 +1,6 @@
-#!/bin/bash
+#!/bin/bash -x
 VERSION=0.1.0b
 echo "plathome application ver${VERSION}"
-
-
-if [ $# -ne 1 ]; then
-  echo "you putted arg $#" 1>&2
-  echo "but this script need 1 arg" 1>&2
-  exit 1
-fi
-
-
-
-
-
 
 ## frontend-checking
 echo "checking frontend folder..."
@@ -67,8 +55,7 @@ git pull
 cd ..
 
 
-
-ENV="BASEURL=http://${1}:8080/"
+ENV="BASEURL=http://localhost:8080/"
 cd plathome-frontend || { echo "move plathome-frontend failed" && exit 1; }
 # SETUP .env for plathome-frontend
 if [ -e ./.env ]; then
@@ -91,6 +78,5 @@ cd ..
 
 # Starting Docker Compose...
 echo "docker-compose start"
-docker-compose build
-docker-compose up
-
+docker-compose -f dev-docker-compose.yml build
+docker-compose  -f dev-docker-compose.yml up
