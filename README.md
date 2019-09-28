@@ -1,30 +1,42 @@
-plathome
-====
+Plathome
+===
 
-A local network monitoring infrastructure tools.
+[README-JP.md available](https://github.com/reud/plathome/blob/master/README-JP.md)
 
-## Description
+# Overview
+自宅のデバイスの状態監視、HTTPリクエストの送信をWebから行うGo+Postgres+Nuxtなアプリケーション
 
-Send ping regulary for device alive check, easy requesting, device monitoring(many devices).
+# Feature
+- Device registering by GUI (API are also available)
+- Routine ping to registered devices
+- A function called EzRequester about easy to send GET Request
+- Responsive, PWA, Application
 
-## Background
+# Dependency
+・docker-compose
 
-I've a lot of raspberry pi and my raspberry pi has gone regulary. So I have to watch device statuses.
+# Setup
 
-## Demo
+```
+git clone https://github.com/reud/plathome.git
+```
 
+# Usage
 
+```
+cd plathome
+# Take frontend,backend repositories from github.
+# If you want to configure about port, just code, etc..., you should edit docker-compose.yml and start.sh
+# This app uses 5432(postgres container),8080 (backend container), 3333(frontend container)port by default.
+chmod a+x start.sh
+./start.sh <device ip address>
+```
 
-## VS. 
+# License
+This software is released under the MIT License,  see [LICENSE](https://github.com/reud/MIT_LICENSE/blob/master/LICENSE)
 
-## Requirement
+# Authors
+[reud](https://github.com/reud)
 
-
-## Usage
-
-## Install
-
-`$ ./start.sh`
-
-## Contribution
-
+# References
+[backend swagger API document(yml)](https://github.com/reud/plathome-backend/blob/master/swagger.yaml)
