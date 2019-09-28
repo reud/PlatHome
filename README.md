@@ -4,7 +4,9 @@ Plathome
 [README-JP.md available](https://github.com/reud/plathome/blob/master/README-JP.md)
 
 # Overview
-自宅のデバイスの状態監視、HTTPリクエストの送信をWebから行うGo+Postgres+Nuxtなアプリケーション
+
+Home device health monitoring、Sending HTTP requests from Web, Made by Go+Postgres+Nuxt in docker-compose.
+
 
 # Feature
 - Device registering by GUI (API are also available)
